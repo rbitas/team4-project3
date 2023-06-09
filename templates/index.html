@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sever Weather</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+</head>
+<body>
+    <h1>Sever Weather (Hail, Tornado, Damaging Winds)</h1>
+    <p>Change the dropdown below to update the plots</p>
+    <select id="selDataset">
+        <option value="Survived">Survived</option>
+        <option value="Died">Died</option>
+    </select>
+
+    <div id="plot1"></div>
+    <div id="map"></div>
+    <div id="plot3"></div>
+
+    <h4>Data Sources:</h4>
+        <ul>
+            <li>
+                <p>NOAA's National Weather Service</p>
+            </li>
+        </ul>
+
+    <h4>Accessing the Storm Weather API</h4>
+    <p>The following endpoints are available to access data:</p>
+    <ul>
+        <li>
+            <a href="/api/v1.0/stormweather">/api/v1.0/stormweather</a>
+            <p>Access a list of all storm data</p>
+        </li>
+    </ul>
+    
+    <h4>Source Code:</h4>
+    <a href="hhttps://github.com/rbitas/team4-project3">https://github.com/rbitas/team4-project3</a>
+
+
+    <script src="{{ url_for('static', filename='js/plots.js') }}"></script>
+</body>
+</html>
