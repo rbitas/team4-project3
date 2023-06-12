@@ -5,7 +5,6 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 import pandas as pd
-from sqlalchemy.orm import joinedload
 from flask import Flask, jsonify, render_template
 
 #################################################
@@ -40,8 +39,8 @@ def main_page():
     """
     return render_template('index.html')
 
-@app.route("/api/v1.0/stormweather")
-def storm_weather():
+@app.route("/api/v1.0/hailweather")
+def hail_weather():
     """
     Return a dictionary of summary data
     """
@@ -53,16 +52,6 @@ def storm_weather():
                                 Hail.time, Hail.tz, Hail.st, Hail.stf, Hail.mag, Hail.inj,
                                 Hail.fat, Hail.loss, Hail.closs, Hail.slat, Hail.slon,
                                 Hail.elat, Hail.elon, Hail.len, Hail.wid).all()
-    
-    results_tornado = session.query(Tornado.om, Tornado.yr, Tornado.mo, Tornado.dy, Tornado.date,
-                                Tornado.time, Tornado.tz, Tornado.st, Tornado.stf, Tornado.mag, Tornado.inj,
-                                Tornado.fat, Tornado.loss, Tornado.closs, Tornado.slat, Tornado.slon,
-                                Tornado.elat, Tornado.elon, Tornado.len, Tornado.wid).all()
-    
-    results_wind = session.query(Wind.om, Wind.yr, Wind.mo, Wind.dy, Wind.date,
-                                Wind.time, Wind.tz, Wind.st, Wind.stf, Wind.mag, Wind.inj,
-                                Wind.fat, Wind.loss, Wind.closs, Wind.slat, Wind.slon,
-                                Wind.elat, Wind.elon, Wind.len, Wind.wid).all()
     
 
     session.close()
@@ -91,9 +80,25 @@ def storm_weather():
         hail_dict["len"] = len
         hail_dict["wid"] = wid
         all_hail.append(hail_dict)
+    return jsonify(all_hail)
 
+@app.route("/api/v1.0/tornadoweather")
+def tornado_weather():
+    """
+    Return a dictionary of summary data
+    """
+
+
+    session = Session(engine)
+
+    results_tornado = session.query(Tornado.om, Tornado.yr, Tornado.mo, Tornado.dy, Tornado.date,
+                                Tornado.time, Tornado.tz, Tornado.st, Tornado.stf, Tornado.mag, Tornado.inj,
+                                Tornado.fat, Tornado.loss, Tornado.closs, Tornado.slat, Tornado.slon,
+                                Tornado.elat, Tornado.elon, Tornado.len, Tornado.wid).all()
     
-    
+    session.close()
+
+
     all_tornado = []
     for om, yr, mo, dy, date, time, tz, st, stf, mag, inj, fat, loss, closs, slat, slon, elat, elon, len, wid in results_tornado:
         tornado_dict = {}
@@ -118,7 +123,23 @@ def storm_weather():
         tornado_dict["len"] = len
         tornado_dict["wid"] = wid
         all_tornado.append(tornado_dict)
+    return jsonify(all_tornado)
 
+
+@app.route("/api/v1.0/windweather")
+def wind_weather():   
+    """
+    Return a dictionary of summary data
+    """
+
+
+    session =  Session(engine)
+
+    results_wind = session.query(Wind.om, Wind.yr, Wind.mo, Wind.dy, Wind.date,
+                                Wind.time, Wind.tz, Wind.st, Wind.stf, Wind.mag, Wind.inj,
+                                Wind.fat, Wind.loss, Wind.closs, Wind.slat, Wind.slon,
+                                Wind.elat, Wind.elon, Wind.len, Wind.wid).all()
+    session.close()
 
     all_wind = []
     for om, yr, mo, dy, date, time, tz, st, stf, mag, inj, fat, loss, closs, slat, slon, elat, elon, len, wid in results_wind:
@@ -144,11 +165,9 @@ def storm_weather():
         wind_dict["len"] = len
         wind_dict["wid"] = wid
         all_wind.append(wind_dict)
+    return jsonify(all_wind)
 
-        
-    return jsonify([all_hail, all_tornado, all_wind])
 
-   
 
 if __name__ == '__main__':
     app.run(debug=True)
