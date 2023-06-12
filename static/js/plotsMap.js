@@ -19,7 +19,7 @@ function markerSize(magnitude){
     }
 d3.json(url_hail).then(function (data_hail) {
     for (let i = 0; i < data_hail.length; i++) {
-        hail = data_hail[i];
+        let hail = data_hail[i];
         L.circle([hail[14], hail[15]], {
             fillOpacity: 0.75,
             color: "white",
