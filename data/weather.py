@@ -7,6 +7,7 @@ df_hail = pd.read_csv('/Users/rinabitas/Documents/team4-project3/data/2022_hail.
 df_tornado = pd.read_csv('/Users/rinabitas/Documents/team4-project3/data/2022_torn.csv')
 df_tornado['id'] = df_tornado.index
 df_wind = pd.read_csv('/Users/rinabitas/Documents/team4-project3/data/2022_wind.csv')
+df_summary = pd.read_csv('/Users/rinabitas/Documents/team4-project3/graph/Summary 2022.csv')
 
 # create a sqlite database and a connection to it
 cnxn = sqlite3.connect('weather.db')
@@ -118,10 +119,21 @@ mt text
 """
 crsr.execute(create_statement_wind)
 
+create_statement_summary = """
+CREATE TABLE summary (
+Month text PRIMARY KEY,
+Tornado integer,
+Hail integer,
+Wind integer
+);
+"""
+crsr.execute(create_statement_summary)
+
 # insert your dataframes into that database
 df_hail.to_sql('hail', cnxn, index=False, if_exists="append")
 df_tornado.to_sql('tornado', cnxn, index=False, if_exists="append")
 df_wind.to_sql('wind', cnxn, index=False, if_exists="append")
+df_summary.to_sql('summary', cnxn, index=False, if_exists="append")
 
 cnxn.close()
 
