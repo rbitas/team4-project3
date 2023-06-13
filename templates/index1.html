@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sever Weather</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin="" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Sever Weather (Hail, Tornado, Damaging Winds)</h1>
+    <p>Change the dropdown below to update the plots</p>
+    <select id="selDataset">
+        <option value="Tornadoes">Tornadoes</option>
+        <option value="Hail">Hail</option>
+        <option value="Wind">Wind</option>
+
+    </select>
+    <h1>Tornadoes USA 2022</h1>
+  
+    <canvas id="myChart" width= "400" height = "400"></canvas>
+    {% comment %} <input type="radio" value="light"  onchange ="changePalette(this)" name="colours">Light
+    <input type="radio" value="dark"  onchange ="changePalette(this)" name="colours">Dark {% endcomment %}
+   
+     <h1>Wind USA 2022</h1>
+   
+    <canvas id="WindChart" width= "400" height = "400"></canvas>
+  
+    </h1>Hail USA 2022</h1>
+    
+    <canvas id="HailChart" width= "400" height = "400"></canvas>
+    <canvas id="linesChart" width= "400" height = "400"></canvas>
+
+
+    <div id="map"></div>
+
+
+    <h4>Data Sources:</h4>
+        <ul>
+            <li>
+                <p>NOAA's National Weather Service</p>
+            </li>
+        </ul>
+
+    <h4>Accessing the Storm Weather API</h4>
+    <p>The following endpoints are available to access data:</p>
+    <ul>
+        <li>
+            <a href="/api/v1.0/hailweather">/api/v1.0/hailweather</a>
+            <p>Access a list of all hail data</p>
+            <a href="/api/v1.0/tornadoweather">/api/v1.0/tornadoweather</a>
+            <p>Access a list of all tornado data</p>
+            <a href="/api/v1.0/windweather">/api/v1.0/windweather</a>
+            <p>Access a list of all wind data</p>
+            <a href="/api/v1.0/summaryweather">/api/v1.0/summaryweather</a>
+            <p>Access a list of the summary data</p>
+        </li>
+    </ul>
+    
+    <h4>Source Code:</h4>
+    <a href="hhttps://github.com/rbitas/team4-project3">https://github.com/rbitas/team4-project3</a>
+
+     <!-- Leaflet JavaScript code -->
+     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+     crossorigin=""></script>
+   <script src="https://d3js.org/d3.v5.min.js"></script>
+   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+   <!-- JavaScript file -->
+   <script type="text/javascript" src="{{ url_for('static', filename='js/plotsMap.js',) }}"></script>
+  
+</body>
+</html>
