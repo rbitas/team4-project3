@@ -21,6 +21,7 @@ Base.prepare(autoload_with=engine)
 Hail = Base.classes.hail
 Tornado = Base.classes.tornado
 Wind = Base.classes.wind
+Summary = Base.classes.summary
 
 
 #################################################
@@ -167,7 +168,25 @@ def wind_weather():
         all_wind.append(wind_dict)
     return jsonify(all_wind)
 
+@app.route("/api/v1.0/summaryweather")
+def summary_weather():
+    """
+    Return a dictionary of summary data
+    """
+    session =  Session(engine)
 
+    results_summary = session.query(Summary.Month, Summary.Tornado, Summary.Hail, Summary.Wind).all()
+    session.close()
+
+    all_summary = []
+    for Month, Tornado , Hail, Wind in results_summary:
+        summary_dict = {}
+        summary_dict["Month"] = Month
+        summary_dict["Tornado"] =Tornado
+        summary_dict["Hail"] = Hail
+        summary_dict["Wind"] = Wind
+        all_summary.append(summary_dict)
+    return jsonify(all_summary)
 
 if __name__ == '__main__':
     app.run(debug=True)
