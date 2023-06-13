@@ -1,6 +1,6 @@
 # Severe Weather Conditions (Hail, Tornado, Wind)
 
-We took severe weather data of hail, tornados, and damaging winds from the year 2022 and used it to create a map of the United States consisting of all three storm conditions, bar graph filtered by months, and a plot showing property loss per state. 
+We took severe weather data of hail, tornadoes, and damaging winds from the year 2022 and used it to create a map of the United States consisting of all three storm conditions, a bar graph filtered by months, and a plot showing the property loss per state. 
 
 ## Team Members:
 - Rina Neaara Bitas
@@ -23,7 +23,6 @@ We took severe weather data of hail, tornados, and damaging winds from the year 
 The visualization dashboard includes the following:
 - HTML/CSS
 - D3.js
-- Plotly.js
 - Leaflet.js
 - Chart.js
 
