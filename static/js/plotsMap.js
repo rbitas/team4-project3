@@ -69,7 +69,7 @@ function addMarkers(url, color, group, magAdjust=1, borderColor = "black") {
                 fillOpacity: 0.75,
                 radius: markerSize(incident.mag * magAdjust)
             };
-            L.circleMarker(latlng, options).bindPopup(`<h3>State: ${incident.st} </h3><hr><p>Date: ${incident.date}</p><hr><p>Magnitude(Tornado=f-scale, hail=inches, wind=knots): ${incident.mag}</p>`).addTo(group);
+            L.circleMarker(latlng, options).bindPopup(`<h3>State: ${incident.st} </h3><hr><p>Date: ${incident.date}</p><hr><p>Magnitude(Tornado=f-scale, hail=inches, wind=knots): ${incident.mag}</p><hr><p>Injured: ${incident.inj}</p>`).addTo(group);
 
         }
         
