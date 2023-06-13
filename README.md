@@ -1,6 +1,6 @@
 # Severe Weather (Hail, Tornado, Wind)
 
-We took severe weather data of hail, tornados, and damaging winds from 2022 and used it to create a map of the United States consisting of all three storm conditions, bar graph filtered by months, and a plot showing property loss per state. 
+We took severe weather data of hail, tornados, and damaging winds from the year 2022 and used it to create a map of the United States consisting of all three storm conditions, bar graph filtered by months, and a plot showing property loss per state. 
 
 ## Team Members:
 - Rina Neaara Bitas
