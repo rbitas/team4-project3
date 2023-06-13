@@ -25,7 +25,7 @@ The visualization dashboard includes the following:
 - D3.js
 - Plotly.js
 - Leaflet.js
-- Charts.js
+- Chart.js
 
 
 
