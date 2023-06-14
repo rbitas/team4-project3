@@ -2,6 +2,10 @@
 
 We took severe weather data of hail, tornadoes, and damaging winds from the year 2022 and used it to create a map of the United States consisting of all three storm conditions, a bar graph filtered by months, and a plot showing the property loss per state. 
 
+[Severe Weather Conditions.pptx](https://github.com/rbitas/team4-project3/files/11740320/Severe.Weather.Conditions.pptx)
+
+
+
 ## Team Members:
 - Rina Neaara Bitas
 - Evis Saliaj
